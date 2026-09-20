@@ -4,7 +4,8 @@ setServers(["1.1.1.1", "8.8.8.8"]);
 
 import express from 'express';
 import cors from 'cors';
-import logger from './middleware/logger.js';
+import { errors } from 'celebrate';
+import { logger } from './middleware/logger.js';
 import 'dotenv/config';
 import { connectMongoDB } from './db/connectMongoDB.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
@@ -27,4 +28,5 @@ app.listen(PORT, () => {
 });
 
 app.use(notFoundHandler);
+app.use(errors());
 app.use(errorHandler);
